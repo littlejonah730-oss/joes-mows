@@ -2,33 +2,41 @@
 
 ## Project Context
 
-This is a Base44 app repository. Treat it as user-owned application code, keep changes focused on the user's request, and preserve existing project conventions.
+LawnFlow originally shipped as a Base44 app (see `base44/` for the original
+entity/workflow/function definitions, kept for reference). It has since been
+migrated off the Base44 platform onto **Supabase** (Postgres + Auth + Storage
++ Realtime) — there is no Base44 backend running anymore.
 
-Start with `README.md` for local setup, environment variables, and publish workflow.
-
-## Base44 References
-
-- CLI overview: https://docs.base44.com/developers/references/cli/get-started/overview.md
-- Agent skills: https://docs.base44.com/developers/backend/overview/skills.md
-
-If your agent supports Agent Skills, install or update Base44 skills before Base44-specific work:
-
-```bash
-npx skills add base44/skills
-```
+Start with `README.md` for setup: creating the Supabase project, running
+`supabase/migrations/0001_init.sql`, configuring auth, and importing
+`lawnflow-data-export/` via `scripts/import-to-supabase.mjs`.
 
 ## Key Files
 
-- `src/`: frontend application source.
-- `src/api/base44Client.js`: frontend Base44 SDK client.
-- `vite.config.js`: Vite config and Base44 Vite plugin setup.
-- `.env.local`: local-only environment values; never commit secrets.
+- `src/`: frontend application source (unchanged from the Base44 export).
+- `src/lib/supabaseClient.js`: the actual `@supabase/supabase-js` client.
+- `src/api/entitiesClient.js`: generic CRUD + realtime over Supabase tables,
+  keyed by the same entity names Base44 used (see `ENTITY_TABLES`).
+- `src/api/authClient.js`: Supabase Auth, shaped to match the old Base44 auth
+  API so call sites didn't need to change.
+- `src/api/base44Client.js`: composes the two above (plus Storage uploads and
+  Edge Function invocation) behind the same `base44.*` shape the rest of the
+  app already calls — this is intentional, not a leftover to clean up.
+- `supabase/migrations/0001_init.sql`: schema + RLS + triggers + storage
+  bucket, generated from `base44/entities/*.jsonc`.
+- `vite.config.js`: plain Vite + React config; no Base44 plugin.
+- `.env` / `.env.example`: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` for
+  the frontend; `SUPABASE_SERVICE_ROLE_KEY` (server-side only, never `VITE_`-
+  prefixed) for the import script.
 
 ## Working Notes
 
-- Use `base44 dev` as the default local development command when you need the local Base44 backend. It can run the backend and frontend together.
-- When docs or code mention the frontend being started automatically, that usually means the Base44 project config includes `site.serveCommand`, for example `"serveCommand": "npm run dev"` in `base44/config.jsonc`.
-- Use `npm run dev` only for frontend-only work against the hosted Base44 backend.
-- Prefer the existing Base44 CLI workflow over adding new npm scripts for Base44-specific tasks.
-- Reuse the existing SDK client and Vite plugin patterns before adding new Base44 integration paths.
-- Run the relevant checks from `package.json` before finishing code changes.
+- Use `npm run dev` for local frontend development against the live
+  Supabase project configured in `.env`. There is no local backend to run.
+- New entities: add a table + RLS policy in a new `supabase/migrations/*.sql`
+  file, then add it to `ENTITY_TABLES` in `src/api/entitiesClient.js`.
+- Run `npm run lint` and `npm run build` before finishing code changes.
+- Base44's serverless functions/workflows (`base44/functions/`,
+  `base44/workflows/`) are not ported yet — see the "Known gaps" section of
+  `README.md` before assuming a feature like the daily digest, recurring job
+  generation, or push notifications is live.
