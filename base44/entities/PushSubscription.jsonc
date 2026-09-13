@@ -1,0 +1,54 @@
+{
+  "name": "PushSubscription",
+  "type": "object",
+  "properties": {
+    "endpoint": {
+      "type": "string",
+      "title": "Push Endpoint"
+    },
+    "p256dh": {
+      "type": "string",
+      "title": "Browser Public Key (p256dh)"
+    },
+    "auth": {
+      "type": "string",
+      "title": "Auth Secret"
+    },
+    "user_agent": {
+      "type": "string",
+      "title": "Device"
+    },
+    "employee_id": {
+      "type": "string",
+      "title": "Employee ID (whose phone this is)"
+    },
+    "is_admin": {
+      "type": "boolean",
+      "title": "Is Owner/Admin Phone",
+      "default": false
+    },
+    "key_hint": {
+      "type": "string",
+      "title": "Signing Key Hint (first chars of the key used at subscribe time)"
+    }
+  },
+  "required": [
+    "endpoint",
+    "p256dh",
+    "auth"
+  ],
+  "rls": {
+    "create": null,
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": null
+  }
+}

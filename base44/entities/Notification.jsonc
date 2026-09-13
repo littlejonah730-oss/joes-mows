@@ -1,0 +1,82 @@
+{
+  "name": "Notification",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "title": "Type",
+      "enum": [
+        "jobs_today",
+        "jobs_tomorrow",
+        "job_claimed",
+        "job_started",
+        "job_completed",
+        "overdue_payment",
+        "recurring_generated",
+        "schedule_change",
+        "waitlist_filled",
+        "login_alert",
+        "money_summary",
+        "custom"
+      ],
+      "default": "custom"
+    },
+    "title": {
+      "type": "string",
+      "title": "Title"
+    },
+    "body": {
+      "type": "string",
+      "title": "Body"
+    },
+    "link": {
+      "type": "string",
+      "title": "App Link (route to open when tapped)"
+    },
+    "related_id": {
+      "type": "string",
+      "title": "Related Record ID"
+    },
+    "severity": {
+      "type": "string",
+      "title": "Severity",
+      "enum": [
+        "info",
+        "success",
+        "warning"
+      ],
+      "default": "info"
+    },
+    "dedup_key": {
+      "type": "string",
+      "title": "Dedup Key (prevents duplicate notifications)"
+    }
+  },
+  "required": [
+    "type",
+    "title",
+    "body"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

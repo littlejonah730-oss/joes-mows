@@ -1,0 +1,39 @@
+{
+  "name": "Waitlist Auto-Fill",
+  "description": "When a future job is cancelled, auto-books the next waitlist customer for that service line into the open slot",
+  "trigger": {
+    "config": {
+      "trigger_type": "entity",
+      "entity_name": "Job",
+      "events": [
+        "update"
+      ]
+    },
+    "condition": "${ ((.trigger.changed_fields // []) | index(\"status\")) != null and .trigger.data.status == \"cancelled\" and (.trigger.old_data.status // \"\") != \"cancelled\" }"
+  },
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "waitlist_auto_fill",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "fill_waitlist": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "fillWaitlistFromCancellation",
+            "args": {
+              "job_id": "${ .trigger.entity_id }"
+            }
+          },
+          "then": "end",
+          "x-base44": {
+            "title": "Auto-book next in line"
+          }
+        }
+      }
+    ]
+  }
+}

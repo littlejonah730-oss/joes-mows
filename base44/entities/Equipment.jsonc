@@ -1,0 +1,111 @@
+{
+  "name": "Equipment",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Equipment Name"
+    },
+    "model": {
+      "type": "string",
+      "title": "Model"
+    },
+    "type": {
+      "type": "string",
+      "title": "Type",
+      "enum": [
+        "mower",
+        "trimmer",
+        "blower",
+        "other"
+      ],
+      "default": "mower"
+    },
+    "status": {
+      "type": "string",
+      "title": "Status",
+      "enum": [
+        "available",
+        "in_use",
+        "maintenance"
+      ],
+      "default": "available"
+    },
+    "assigned_job_id": {
+      "type": "string",
+      "title": "Assigned Job ID"
+    },
+    "assigned_job_name": {
+      "type": "string",
+      "title": "Assigned Job Name"
+    },
+    "jobs_completed": {
+      "type": "number",
+      "title": "Jobs Completed",
+      "default": 0
+    },
+    "hours_used": {
+      "type": "number",
+      "title": "Hours Used",
+      "default": 0
+    },
+    "purchase_price": {
+      "type": "number",
+      "title": "Purchase Price",
+      "default": 0
+    },
+    "resale_value": {
+      "type": "number",
+      "title": "Resale Value",
+      "default": 0
+    },
+    "purchase_date": {
+      "type": "string",
+      "format": "date",
+      "title": "Purchase Date"
+    },
+    "image_url": {
+      "type": "string",
+      "title": "Image URL"
+    },
+    "notes": {
+      "type": "string",
+      "title": "Notes"
+    },
+    "last_serviced_date": {
+      "type": "string",
+      "format": "date",
+      "title": "Last Serviced Date"
+    },
+    "maintenance_state": {
+      "type": "string",
+      "title": "Maintenance State (JSON of per-task completions)"
+    }
+  },
+  "required": [
+    "name",
+    "type"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

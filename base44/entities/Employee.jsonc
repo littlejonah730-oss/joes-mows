@@ -1,0 +1,149 @@
+{
+  "name": "Employee",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Name"
+    },
+    "phone": {
+      "type": "string",
+      "title": "Phone"
+    },
+    "role": {
+      "type": "string",
+      "title": "Role",
+      "enum": [
+        "greenhorn",
+        "groundsman",
+        "operator",
+        "foreman",
+        "specialist"
+      ],
+      "default": "greenhorn"
+    },
+    "notes": {
+      "type": "string",
+      "title": "Notes"
+    },
+    "active": {
+      "type": "boolean",
+      "title": "Active",
+      "default": true
+    },
+    "starred": {
+      "type": "boolean",
+      "title": "Starred (Main Crew)",
+      "default": false
+    },
+    "user_id": {
+      "type": "string",
+      "title": "User ID"
+    },
+    "pin": {
+      "type": "string",
+      "title": "PIN"
+    },
+    "yards_completed": {
+      "type": "number",
+      "title": "Yards Completed",
+      "default": 0
+    },
+    "reliability_score": {
+      "type": "number",
+      "title": "Reliability Score",
+      "default": 100
+    },
+    "reward_progress": {
+      "type": "number",
+      "title": "Reward Progress",
+      "default": 0
+    },
+    "reward_goal": {
+      "type": "number",
+      "title": "Reward Goal",
+      "default": 10
+    },
+    "rewards_claimed": {
+      "type": "number",
+      "title": "Rewards Claimed",
+      "default": 0
+    },
+    "strength_tags": {
+      "type": "string",
+      "title": "Strength Tags (comma-separated)"
+    },
+    "kudos_message": {
+      "type": "string",
+      "title": "Kudos Message"
+    },
+    "kudos_title": {
+      "type": "string",
+      "title": "Kudos Title",
+      "default": "Great Work!"
+    },
+    "kudos_from": {
+      "type": "string",
+      "title": "Kudos From",
+      "default": "Joe's Mows"
+    },
+    "kudos_read": {
+      "type": "boolean",
+      "title": "Kudos Read",
+      "default": false
+    },
+    "kudos_date": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Kudos Date"
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "user"
+          }
+        }
+      ]
+    },
+    "read": {
+      "$or": [
+        {
+          "data.user_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.user_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

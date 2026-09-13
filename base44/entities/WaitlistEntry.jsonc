@@ -1,0 +1,86 @@
+{
+  "name": "WaitlistEntry",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Customer Name"
+    },
+    "phone": {
+      "type": "string",
+      "title": "Phone"
+    },
+    "address": {
+      "type": "string",
+      "title": "Address"
+    },
+    "service_line": {
+      "type": "string",
+      "title": "Service Line",
+      "enum": [
+        "mowing",
+        "lights",
+        "leaves"
+      ],
+      "default": "mowing"
+    },
+    "set_price": {
+      "type": "number",
+      "title": "Quoted Price",
+      "default": 0
+    },
+    "notes": {
+      "type": "string",
+      "title": "Notes"
+    },
+    "customer_id": {
+      "type": "string",
+      "title": "Linked Customer ID"
+    },
+    "status": {
+      "type": "string",
+      "title": "Status",
+      "enum": [
+        "waiting",
+        "filled",
+        "removed"
+      ],
+      "default": "waiting"
+    },
+    "filled_job_id": {
+      "type": "string",
+      "title": "Filled Job ID"
+    },
+    "filled_date": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Filled Date"
+    }
+  },
+  "required": [
+    "name",
+    "service_line"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "name": "Reward",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Reward Name"
+    },
+    "description": {
+      "type": "string",
+      "title": "Description"
+    },
+    "jobs_required": {
+      "type": "number",
+      "title": "Jobs Required",
+      "default": 10
+    }
+  },
+  "required": [
+    "name",
+    "jobs_required"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "user"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

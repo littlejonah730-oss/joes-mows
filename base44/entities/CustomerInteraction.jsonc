@@ -1,0 +1,71 @@
+{
+  "name": "CustomerInteraction",
+  "type": "object",
+  "properties": {
+    "customer_id": {
+      "type": "string",
+      "title": "Customer ID"
+    },
+    "customer_name": {
+      "type": "string",
+      "title": "Customer Name"
+    },
+    "type": {
+      "type": "string",
+      "title": "Interaction Type",
+      "enum": [
+        "preset_message",
+        "note",
+        "schedule_change",
+        "invoice",
+        "other"
+      ],
+      "default": "other"
+    },
+    "description": {
+      "type": "string",
+      "title": "Description"
+    },
+    "actor_name": {
+      "type": "string",
+      "title": "Actor Name",
+      "default": "Admin"
+    }
+  },
+  "required": [
+    "customer_id",
+    "type",
+    "description"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "user"
+          }
+        }
+      ]
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

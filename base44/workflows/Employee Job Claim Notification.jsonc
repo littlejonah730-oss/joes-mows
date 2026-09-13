@@ -1,0 +1,39 @@
+{
+  "name": "Employee Job Claim Notification",
+  "description": "Notifies the admin when an employee signs up for a job",
+  "trigger": {
+    "config": {
+      "trigger_type": "entity",
+      "entity_name": "Job",
+      "events": [
+        "update"
+      ]
+    },
+    "condition": "${ (.trigger.data.claimed_by_employee_id // \"\") != \"\" and (.trigger.old_data.claimed_by_employee_id // \"\") == \"\" }"
+  },
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "employee_job_claim",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "notify_claim": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "notifyJobClaimed",
+            "args": {
+              "job_id": "${ .trigger.entity_id }"
+            }
+          },
+          "then": "end",
+          "x-base44": {
+            "title": "Notify admin"
+          }
+        }
+      }
+    ]
+  }
+}

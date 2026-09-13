@@ -1,0 +1,50 @@
+{
+"Message": [
+{"employee_name": "Agent Jimothy 2.0", "sender": "admin", "content": "agent", "employee_id": "6a5d39aa4ee4a32391fa0650", "id": "6a657f7cedefc6b72d09c293"},
+{"employee_name": "Agent Jimothy 2.0", "sender": "admin", "content": "hello", "employee_id": "6a5d39aa4ee4a32391fa0650", "id": "6a657dd007e9aa5e008ccfc7"},
+{"employee_name": "Agent Jimothy 2.0", "sender": "admin", "content": "thanks", "employee_id": "6a5d39aa4ee4a32391fa0650", "id": "6a5f708af64921120ae39985"},
+{"employee_name": "Agent Jimothy 2.0", "sender": "employee", "content": "GROUP B - THURSDAY\n1) Chris Simpson - 2558 Sleepy Hollow Rd\n2) Vikki's Neighbor - 2562 Sleepy Hollow Rd\n3) Vikki Naylor - 2566 Sleepy Hollow Rd", "employee_id": "6a5d39aa4ee4a32391fa0650", "id": "6a5d9797b2c2317d02aa8e64"},
+{"employee_name": "Agent Jimothy 2.0", "sender": "employee", "content": "GROUP B - WEDNESDAY\n1) David Dakil - 2622 Kings Rd\n2) Debbie Hardgrave - 2626 Kings Rd", "employee_id": "6a5d39aa4ee4a32391fa0650", "id": "6a5d979335d437c9462817eb"},
+{"employee_name": "Agent Jimothy 2.0", "sender": "employee", "content": "GROUP B - TUESDAY\n1) Mimi - 4438 Grayburg Dr", "employee_id": "6a5d39aa4ee4a32391fa0650", "id": "6a5d97902495ebd5def80a4a"},
+{"employee_name": "Agent Jimothy 2.0", "sender": "employee", "content": "GROUP B - MONDAY\n1) Mr. Compton - 3110 Rockbrook Dr\n2) Justin Quigley - 2734 Palo Duro Dr\n3) Melissa Dean - 5314 Riviera Ln", "employee_id": "6a5d39aa4ee4a32391fa0650", "id": "6a5d978c961050334705e3fc"},
+{"employee_name": "Agent Jimothy 2.0", "sender": "employee", "content": "GROUP A - THURSDAY\n1) Chris Simpson - 2558 Sleepy Hollow Rd\n2) Vikki Naylor - 2566 Sleepy Hollow Rd", "employee_id": "6a5d39aa4ee4a32391fa0650", "id": "6a5d9787c1446104f427954c"},
+{"employee_name": "Agent Jimothy 2.0", "sender": "employee", "content": "GROUP A - WEDNESDAY\n1) Mrs. Vick's Mom - 2612 Circle J\n2) Ms. Wendland - 138 E Riverside Ave", "employee_id": "6a5d39aa4ee4a32391fa0650", "id": "6a5d97842cb2d2b7e7a07804"},
+{"employee_name": "Agent Jimothy 2.0", "sender": "employee", "content": "GROUP A - TUESDAY\n1) Bianca - 4309 Willow Cir\n2) Shayla - 4042 Blair Ln", "employee_id": "6a5d39aa4ee4a32391fa0650", "id": "6a5d97801f6ea492fc144368"},
+{"employee_name": "Agent Jimothy 2.0", "sender": "employee", "content": "GROUP A - MONDAY\n1) Mando - 2713 Canyon Creek Dr\n2) Mr. Miner - 8 Southridge Dr\n3) Melissa Dean - 5314 Riviera Ln", "employee_id": "6a5d39aa4ee4a32391fa0650", "id": "6a5d977c95935ec0752f763b"},
+{"employee_name": "Agent Jimothy 2.0", "sender": "employee", "content": "THIS WEEK - WEDNESDAY (Jul 22)\n1) Chris Simpson - 2558 Sleepy Hollow Rd\n2) Vikki Naylor - 2566 Sleepy Hollow Rd\n3) David Dakil - 2622 Kings Rd\n4) Debbie Hardgrave - 2626 Kings Rd", "employee_id": "6a5d39aa4ee4a32391fa0650", "id": "6a5d97780e5611e907f2fa8a"},
+{"employee_name": "Agent Jimothy 2.0", "sender": "employee", "content": "THIS WEEK - TUESDAY (Jul 21)\n1) Ms. Wendland - 138 E Riverside Ave\n2) Mr. Compton - 3110 Rockbrook Dr\n3) Justin Quigley - 2734 Palo Duro Dr\n4) Bianca - 4309 Willow Cir\n5) Vikki's Neighbor - 2562 Sleepy Hollow Rd", "employee_id": "6a5d39aa4ee4a32391fa0650", "id": "6a5d9774ab9a7e30489591cc"},
+{"employee_name": "Agent Jimothy 2.0", "sender": "employee", "content": "THIS WEEK - MONDAY (Jul 20)\n1) Mimi - 4438 Grayburg Dr\n2) Mando - 2713 Canyon Creek Dr\n3) Mr. Miner - 8 Southridge Dr\n4) Melissa Dean - 5314 Riviera Ln\n5) Mrs. Vick's Mom - 2612 Circle J", "employee_id": "6a5d39aa4ee4a32391fa0650", "id": "6a5d976f9eef6c69d67e7335"},
+{"employee_name": "Agent Jimothy 2.0", "sender": "employee", "content": "Today (7/19): Vikki Naylor, 2566 Sleepy Hollow Rd - Mow - $60 - already completed. Tomorrow (7/20) - 3 jobs, $170 total.", "employee_id": "6a5d39aa4ee4a32391fa0650", "id": "6a5d3dbd155da3989b6a8ad5"},
+{"employee_name": "Agent Jimothy 2.0", "sender": "admin", "content": "hello", "employee_id": "6a5d39aa4ee4a32391fa0650", "id": "6a5d3d197f9db050fe408d1f"},
+{"employee_name": "Agent Jimothy 2.0", "sender": "employee", "content": "Hey boss, Jimothy here. Just testing that I can drop a message in your inbox.", "employee_id": "6a5d39aa4ee4a32391fa0650", "id": "6a5d3d0313bfc4a22fea081d"},
+{"employee_name": "Jaime Palazuelos", "sender": "admin", "content": "hush chicken. you working for me?", "employee_id": "6a5c2d0b5bd5042a6e03b1cb", "id": "6a5c2e29213f519690237fd0"},
+{"employee_name": "Jaime Palazuelos", "sender": "employee", "content": "Boi", "employee_id": "6a5c2d0b5bd5042a6e03b1cb", "id": "6a5c2ddeb2f76b218115bf12"},
+{"employee_name": "Jonah Little", "sender": "employee", "content": "hey", "employee_id": "6a5c10bf9175d852b2d20368", "id": "6a5c2c6592b3b6be93aac5f7"},
+{"employee_name": "Chris Little", "sender": "admin", "content": "yo", "employee_id": "6a5c2887aaa6d549cd507663", "id": "6a5c2c5afdcb34bbd2be2e61"},
+{"employee_name": "Chris Little", "sender": "employee", "content": "Yo", "employee_id": "6a5c2887aaa6d549cd507663", "id": "6a5c2be739f44f9fd25a6027"},
+{"employee_name": "YouTube Account", "sender": "admin", "content": "perfect", "employee_id": "6a5c2407fabcbfc2240deb2b", "id": "6a5c2af97c9f90193cc13d68"},
+{"employee_name": "YouTube Account", "sender": "admin", "content": "sounds goof", "employee_id": "6a5c2407fabcbfc2240deb2b", "id": "6a5c2537acf9383cfa7252cb"},
+{"employee_name": "YouTube Account", "sender": "employee", "content": "hey I can work", "employee_id": "6a5c2407fabcbfc2240deb2b", "id": "6a5c25275742af1743fad671"}
+],
+"ChatMessage": [
+{"sender_role": "foreman", "sender_name": "YouTube Account", "channel_type": "crew", "channel_id": "crew-all", "content": "OK cool", "id": "6a65984c100c1fd37986bb2b"},
+{"sender_role": "admin", "sender_name": "Admin", "channel_type": "crew", "channel_id": "crew-all", "content": "Hey, everyone! Some new updates are coming to this app.. lmk if there is anything y'all think I should add. Thanks", "id": "6a6595e55f51293683effdca"}
+],
+"EquipmentUsage": [
+{"equipment_name": "Newer STIHL Weedeater", "job_customer_name": "Sherry Hunt", "job_date": "2026-07-27", "job_id": "6a62d5c42f59c917c125a964", "equipment_id": "6a67f3ffa1c2aba0b93366f3", "id": "6a68f0c423eb76a0f9b813ba"},
+{"equipment_name": "Newer STIHL Weedeater", "job_customer_name": "Melissa Dean", "job_date": "2026-07-27", "job_id": "6a5e3eb8fdbc6b82cb7c205f", "equipment_id": "6a67f3ffa1c2aba0b93366f3", "id": "6a68f0c43f0c7bdb1b8e2ee9"},
+{"equipment_name": "Bad Boy Commercial Push", "job_customer_name": "Sherry Hunt", "job_date": "2026-07-27", "job_id": "6a62d5c42f59c917c125a964", "equipment_id": "6a67fe1db65c81dc76a1dfc0", "id": "6a67fe258f8d116d21f91703"}
+],
+"YardPhoto": [
+{"customer_name": "Jerry Don Hunt", "title": "backyard", "category": "Best Work", "customer_id": "6a5a4299cdd1d9d2fea12af6", "image_url": "https://base44.app/api/apps/6a59ea0254077b861bbf3e7a/files/mp/public/6a59ea0254077b861bbf3e7a/471b41ee8_IMG_4244.png", "id": "6a681129cc0ef0ae75fb3c39"},
+{"customer_name": "Melissa Dean", "title": "front yard", "category": "Best Work", "customer_id": "6a5a424501b5a9817570fcf0", "image_url": "https://base44.app/api/apps/6a59ea0254077b861bbf3e7a/files/mp/public/6a59ea0254077b861bbf3e7a/9de4e1003_IMG_5590.jpeg", "id": "6a6810f409b06112c3c9f1ce"},
+{"customer_name": null, "title": "backyard (nechole)", "category": "Best Work", "customer_id": null, "image_url": "https://base44.app/api/apps/6a59ea0254077b861bbf3e7a/files/mp/public/6a59ea0254077b861bbf3e7a/4161f573c_IMG_5947.jpeg", "id": "6a6810b9e47039a7496672eb"},
+{"customer_name": null, "title": "front yard (nechole)", "category": "Best Work", "customer_id": null, "image_url": "https://base44.app/api/apps/6a59ea0254077b861bbf3e7a/files/mp/public/6a59ea0254077b861bbf3e7a/a0481939b_IMG_5946.jpeg", "id": "6a6810a22e59a6795a53d0e2"},
+{"customer_name": "Melissa Dean", "title": "front yard", "category": "Best Work", "customer_id": "6a5a424501b5a9817570fcf0", "image_url": "https://base44.app/api/apps/6a59ea0254077b861bbf3e7a/files/mp/public/6a59ea0254077b861bbf3e7a/896a68bbd_IMG_5958.jpeg", "id": "6a68107a5d5018f679538c3e"},
+{"customer_name": "Melissa Dean", "title": "lines", "category": "Best Work", "customer_id": "6a5a424501b5a9817570fcf0", "image_url": "https://base44.app/api/apps/6a59ea0254077b861bbf3e7a/files/mp/public/6a59ea0254077b861bbf3e7a/19114c122_IMG_5575.jpeg", "id": "6a660d34a3cad5cbbdda8dbc"},
+{"customer_name": "Melissa Dean", "title": "backyard", "category": "Best Work", "customer_id": "6a5a424501b5a9817570fcf0", "image_url": "https://base44.app/api/apps/6a59ea0254077b861bbf3e7a/files/mp/public/6a59ea0254077b861bbf3e7a/0edf6c375_IMG_5592.jpeg", "id": "6a660d1185ada51ac8995eeb"},
+{"customer_name": "David Dakil", "title": "front yard", "category": "Best Work", "customer_id": "6a5a433dd65c26ddd294568e", "image_url": "https://base44.app/api/apps/6a59ea0254077b861bbf3e7a/files/mp/public/6a59ea0254077b861bbf3e7a/44fe4a289_IMG_5867.jpeg", "id": "6a660cdc3413c4c8174230b1"},
+{"customer_name": "Vikki Naylor", "title": "backyard", "category": "Best Work", "customer_id": "6a5a42c5911afe5859e8f820", "image_url": "https://base44.app/api/apps/6a59ea0254077b861bbf3e7a/files/mp/public/6a59ea0254077b861bbf3e7a/699d757ba_IMG_5912.jpeg", "id": "6a660cc14ac9b70e1e52c8f7"},
+{"customer_name": "Vikki's Neighbor", "title": "Backyard", "category": "Best Work", "customer_id": "6a5a43114d782b7362c44501", "image_url": "https://base44.app/api/apps/6a59ea0254077b861bbf3e7a/files/mp/public/6a59ea0254077b861bbf3e7a/277c5958f_IMG_5926.jpeg", "id": "6a660caa968bdd36bdd4bc51"}
+]
+}

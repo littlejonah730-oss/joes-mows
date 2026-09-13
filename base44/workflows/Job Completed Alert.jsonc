@@ -1,0 +1,39 @@
+{
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "job_completed_alert",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "notify_completed": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "notifyJobCompleted",
+            "args": {
+              "job_id": "${ .trigger.entity_id }"
+            }
+          },
+          "then": "end",
+          "x-base44": {
+            "title": "Notify owner + employee job completed"
+          }
+        }
+      }
+    ]
+  },
+  "description": "Notifies the owner (in-app + push) and the assigned employee's phone whenever a job is marked complete",
+  "name": "Job Completed Alert",
+  "trigger": {
+    "config": {
+      "trigger_type": "entity",
+      "entity_name": "Job",
+      "events": [
+        "update"
+      ]
+    },
+    "condition": "${ .trigger.data.status == \"completed\" and .trigger.old_data.status != \"completed\" }"
+  }
+}

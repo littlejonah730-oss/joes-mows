@@ -1,0 +1,12 @@
+[
+{"name": "Open Trailer", "purchase_price": 967.5, "type": "other", "status": "available", "id": "6a7b76d9f4d818549c4d1b8e"},
+{"name": "Closed Trailer", "purchase_price": 7500.0, "type": "other", "status": "available", "id": "6a79e69f05e48a5ffd5127e2"},
+{"name": "Zero Turn", "purchase_price": 2000.0, "type": "mower", "purchase_date": "2026-08-10", "status": "available", "id": "6a79e64382f1871eeaca2359"},
+{"name": "Hedge Trimmer", "purchase_price": 450.0, "model": "DH212 Professional shindaiwa", "type": "trimmer", "status": "available", "id": "6a6a86d7c387ed9d270104ec"},
+{"name": "Old STIHL Weedeater (Pops)", "purchase_price": 0.0, "model": "STIHL FS 70 R", "type": "trimmer", "status": "available", "id": "6a67feceac1988478510d019"},
+{"name": "Bad Boy Commercial Push", "purchase_price": 1427.82, "model": "BB21 Zone Start - Kawasaki", "type": "mower", "purchase_date": "2026-07-27", "status": "available", "id": "6a67fe1db65c81dc76a1dfc0"},
+{"name": "Echo Mower", "purchase_price": 534.86, "model": "21 in. 190cc Briggs and Stratton Gas 3-in-1 Dual Blade RWD Self-Propelled Lawn Mower", "type": "mower", "purchase_date": "2025-07-28", "status": "available", "id": "6a67fd39c41d72b8f5b750dc"},
+{"name": "Backpack Blower", "purchase_price": 499.0, "model": "ECHO 200 MPH 700 CFM 59.7cc Gas Backpack Leaf Blower", "type": "blower", "purchase_date": "2026-04-27", "status": "available", "id": "6a67fc8223e456a7c50be051"},
+{"name": "STIHL Blower/Vacuum", "purchase_price": 399.0, "model": "STIHL SH 86 C-E 170 mph 444 CFM Gas Handheld Blower/Mulcher/Vac", "type": "blower", "status": "available", "id": "6a67f4174f34cb5e87b147b0"},
+{"name": "Newer STIHL Weedeater", "purchase_price": 411.34, "model": "STIHL FS 91 R 16.5 in. Gas String Trimmer", "type": "trimmer", "purchase_date": "2026-03-15", "status": "available", "id": "6a67f3ffa1c2aba0b93366f3"}
+]

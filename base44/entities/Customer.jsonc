@@ -1,0 +1,146 @@
+{
+  "name": "Customer",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Name"
+    },
+    "phone": {
+      "type": "string",
+      "title": "Phone"
+    },
+    "address": {
+      "type": "string",
+      "title": "Address"
+    },
+    "notes": {
+      "type": "string",
+      "title": "Notes"
+    },
+    "service_line": {
+      "type": "string",
+      "title": "Service Line",
+      "enum": [
+        "mowing",
+        "lights",
+        "leaves"
+      ],
+      "default": "mowing"
+    },
+    "set_price": {
+      "type": "number",
+      "title": "Set Price",
+      "default": 0
+    },
+    "yard_size_sqft": {
+      "type": "number",
+      "title": "Yard Size (sq ft)",
+      "default": 0
+    },
+    "mulch_type": {
+      "type": "string",
+      "title": "Mulch Type",
+      "enum": [
+        "mulched",
+        "bagged",
+        "flush_chuted"
+      ],
+      "default": "mulched"
+    },
+    "service_details": {
+      "type": "string",
+      "title": "Service Details (line-specific)"
+    },
+    "lights_scope": {
+      "type": "string",
+      "title": "Lights Install Scope"
+    },
+    "lights_colors": {
+      "type": "string",
+      "title": "Lights Colors / Style"
+    },
+    "leaf_volume": {
+      "type": "string",
+      "title": "Leaf Volume",
+      "enum": [
+        "light",
+        "moderate",
+        "heavy"
+      ],
+      "default": "moderate"
+    },
+    "disposal_preference": {
+      "type": "string",
+      "title": "Disposal Preference",
+      "enum": [
+        "bagged",
+        "curb",
+        "haul"
+      ],
+      "default": "bagged"
+    },
+    "client_quality": {
+      "type": "number",
+      "title": "Client Quality (1-5)",
+      "default": 3,
+      "minimum": 1,
+      "maximum": 5
+    },
+    "is_recurring": {
+      "type": "boolean",
+      "title": "Is Recurring",
+      "default": false
+    },
+    "recurring_rule": {
+      "type": "string",
+      "title": "Recurring Rule",
+      "enum": [
+        "weekly",
+        "biweekly",
+        "monthly",
+        "by_request"
+      ],
+      "default": "by_request"
+    },
+    "preferred_contact": {
+      "type": "string",
+      "title": "Preferred Contact",
+      "enum": [
+        "phone",
+        "text"
+      ],
+      "default": "text"
+    },
+    "active": {
+      "type": "boolean",
+      "title": "Active",
+      "default": true
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

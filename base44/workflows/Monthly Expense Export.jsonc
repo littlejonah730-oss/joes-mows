@@ -1,0 +1,45 @@
+{
+  "description": "On the 1st of each month, exports last month's expenses to a new Google Sheet",
+  "trigger": {
+    "condition": null,
+    "config": {
+      "trigger_type": "scheduled",
+      "events": [],
+      "schedule_mode": "recurring",
+      "cron_expression": "0 6 1 * *",
+      "one_time_date": null,
+      "timezone": "America/Chicago",
+      "interval_value": null,
+      "interval_unit": null,
+      "interval_anchor": null,
+      "ends_type": "never",
+      "ends_on_date": null,
+      "ends_after_count": null
+    }
+  },
+  "name": "Monthly Expense Export",
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "monthly_expense_export",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "export_expenses": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "exportExpensesToSheets",
+            "args": {}
+          },
+          "then": "end",
+          "x-base44": {
+            "title": "Export last month's expenses",
+            "description": "Creates a Google Sheet"
+          }
+        }
+      }
+    ]
+  }
+}

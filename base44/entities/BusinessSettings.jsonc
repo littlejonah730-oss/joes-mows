@@ -1,0 +1,127 @@
+{
+  "name": "BusinessSettings",
+  "type": "object",
+  "properties": {
+    "business_name": {
+      "type": "string",
+      "title": "Business Name",
+      "default": "GreenPro Lawn Care"
+    },
+    "logo_url": {
+      "type": "string",
+      "title": "Logo URL"
+    },
+    "phone": {
+      "type": "string",
+      "title": "Phone"
+    },
+    "email": {
+      "type": "string",
+      "title": "Email"
+    },
+    "address": {
+      "type": "string",
+      "title": "Address"
+    },
+    "home_address": {
+      "type": "string",
+      "title": "Home/Starting Address",
+      "default": "3214 Alta Vista N., San Angelo, Texas"
+    },
+    "default_price": {
+      "type": "number",
+      "title": "Default Price",
+      "default": 40
+    },
+    "late_fee": {
+      "type": "number",
+      "title": "Late Fee",
+      "default": 5
+    },
+    "theme": {
+      "type": "string",
+      "title": "Theme",
+      "enum": [
+        "light",
+        "dark"
+      ],
+      "default": "dark"
+    },
+    "notification_email": {
+      "type": "string",
+      "title": "Notification Email"
+    },
+    "today_notification_time": {
+      "type": "string",
+      "title": "Today Jobs Notification Time",
+      "default": "07:00"
+    },
+    "tomorrow_notification_time": {
+      "type": "string",
+      "title": "Tomorrow Jobs Notification Time",
+      "default": "18:00"
+    },
+    "timezone_offset": {
+      "type": "number",
+      "title": "Timezone Offset",
+      "default": 0
+    },
+    "cash_on_hand": {
+      "type": "number",
+      "title": "Cash On Hand",
+      "default": 0
+    },
+    "equipment_resale_value": {
+      "type": "number",
+      "title": "Equipment Resale Value",
+      "default": 0
+    },
+    "overdue_notification_days": {
+      "type": "number",
+      "title": "Overdue Payment Notification (days past due)",
+      "default": 14
+    },
+    "google_review_link": {
+      "type": "string",
+      "title": "Google Review Link"
+    },
+    "last_expense_export_month": {
+      "type": "string",
+      "title": "Last Expense Export (month label)"
+    },
+    "last_expense_export_date": {
+      "type": "string",
+      "format": "date",
+      "title": "Last Expense Export Date"
+    },
+    "last_expense_export_url": {
+      "type": "string",
+      "title": "Last Expense Export Spreadsheet URL"
+    }
+  },
+  "required": [
+    "business_name"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

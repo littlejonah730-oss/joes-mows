@@ -1,0 +1,86 @@
+{
+  "name": "Badge",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Badge Name"
+    },
+    "description": {
+      "type": "string",
+      "title": "Description"
+    },
+    "icon": {
+      "type": "string",
+      "title": "Icon (emoji)",
+      "default": "\ud83c\udfc6"
+    },
+    "criteria_type": {
+      "type": "string",
+      "title": "Criteria Type",
+      "enum": [
+        "total_jobs",
+        "mowing_count",
+        "leaf_count",
+        "cleanup_count",
+        "on_time_percent",
+        "job_value_avg",
+        "reliability_score"
+      ],
+      "default": "total_jobs"
+    },
+    "criteria_threshold": {
+      "type": "number",
+      "title": "Threshold",
+      "default": 10
+    },
+    "color": {
+      "type": "string",
+      "title": "Color",
+      "enum": [
+        "emerald",
+        "amber",
+        "blue",
+        "purple",
+        "red"
+      ],
+      "default": "emerald"
+    }
+  },
+  "required": [
+    "name",
+    "criteria_type",
+    "criteria_threshold"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "user"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

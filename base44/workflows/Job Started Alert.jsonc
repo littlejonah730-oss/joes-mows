@@ -1,0 +1,39 @@
+{
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "job_started_alert",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "notify_started": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "notifyJobStarted",
+            "args": {
+              "job_id": "${ .trigger.entity_id }"
+            }
+          },
+          "then": "end",
+          "x-base44": {
+            "title": "Notify owner job started"
+          }
+        }
+      }
+    ]
+  },
+  "description": "Notifies the owner when a job is marked as Started (by an employee or admin)",
+  "name": "Job Started Alert",
+  "trigger": {
+    "config": {
+      "trigger_type": "entity",
+      "entity_name": "Job",
+      "events": [
+        "update"
+      ]
+    },
+    "condition": "${ .trigger.data.status == \"in_progress\" and .trigger.old_data.status != \"in_progress\" }"
+  }
+}

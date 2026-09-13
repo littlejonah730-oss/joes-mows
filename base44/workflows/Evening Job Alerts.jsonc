@@ -1,0 +1,46 @@
+{
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "evening_job_alerts",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "evening_schedule": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "sendDailySchedule",
+            "args": {
+              "mode": "tomorrow"
+            }
+          },
+          "then": "end",
+          "x-base44": {
+            "title": "Tomorrow's jobs + pay alerts"
+          }
+        }
+      }
+    ]
+  },
+  "description": "Every evening at 8pm Central: sends the owner tomorrow's jobs with pay (employees get only their own jobs, no pay)",
+  "name": "Evening Job Alerts",
+  "trigger": {
+    "condition": null,
+    "config": {
+      "trigger_type": "scheduled",
+      "events": [],
+      "schedule_mode": "recurring",
+      "cron_expression": "0 20 * * *",
+      "one_time_date": null,
+      "timezone": "America/Chicago",
+      "interval_value": null,
+      "interval_unit": null,
+      "interval_anchor": null,
+      "ends_type": "never",
+      "ends_on_date": null,
+      "ends_after_count": null
+    }
+  }
+}

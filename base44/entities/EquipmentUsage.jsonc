@@ -1,0 +1,53 @@
+{
+  "name": "EquipmentUsage",
+  "type": "object",
+  "properties": {
+    "equipment_id": {
+      "type": "string",
+      "title": "Equipment ID"
+    },
+    "equipment_name": {
+      "type": "string",
+      "title": "Equipment Name"
+    },
+    "job_id": {
+      "type": "string",
+      "title": "Job ID"
+    },
+    "job_customer_name": {
+      "type": "string",
+      "title": "Job Customer Name"
+    },
+    "job_date": {
+      "type": "string",
+      "format": "date",
+      "title": "Job Date"
+    }
+  },
+  "required": [
+    "equipment_id",
+    "job_id"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

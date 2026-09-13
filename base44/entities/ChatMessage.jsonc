@@ -1,0 +1,82 @@
+{
+  "name": "ChatMessage",
+  "type": "object",
+  "properties": {
+    "channel_type": {
+      "type": "string",
+      "title": "Channel Type",
+      "enum": [
+        "crew",
+        "job",
+        "dm"
+      ],
+      "default": "crew"
+    },
+    "channel_id": {
+      "type": "string",
+      "title": "Channel ID"
+    },
+    "sender_id": {
+      "type": "string",
+      "title": "Sender ID"
+    },
+    "sender_name": {
+      "type": "string",
+      "title": "Sender Name"
+    },
+    "sender_role": {
+      "type": "string",
+      "title": "Sender Role"
+    },
+    "content": {
+      "type": "string",
+      "title": "Content"
+    }
+  },
+  "required": [
+    "channel_id",
+    "sender_id",
+    "sender_name",
+    "content"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "user"
+          }
+        }
+      ]
+    },
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "user"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

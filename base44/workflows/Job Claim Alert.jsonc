@@ -1,0 +1,42 @@
+{
+  "name": "Job Claim Alert",
+  "description": "Notifies the owner the moment an employee signs up for (claims) a job",
+  "trigger": {
+    "config": {
+      "trigger_type": "entity",
+      "entity_name": "Job",
+      "events": [
+        "update"
+      ]
+    },
+    "condition": "${ ((.trigger.changed_fields // []) | index(\"claimed_by_employee_id\")) != null and .trigger.data.claimed_by_employee_id != null and (.trigger.old_data.claimed_by_employee_id // null) == null }"
+  },
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "job_claim_alert",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "notify_claim": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "notifyJobClaimed",
+            "args": {
+              "job_id": "${ .trigger.entity_id }",
+              "employee_name": "${ .trigger.data.claimed_by_name }",
+              "customer_name": "${ .trigger.data.customer_name }",
+              "claimed_at": "${ .trigger.data.claimed_at }"
+            }
+          },
+          "then": "end",
+          "x-base44": {
+            "title": "Notify owner of claim"
+          }
+        }
+      }
+    ]
+  }
+}

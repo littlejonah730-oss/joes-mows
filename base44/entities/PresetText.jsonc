@@ -1,0 +1,59 @@
+{
+  "name": "PresetText",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "title": "Title"
+    },
+    "content": {
+      "type": "string",
+      "title": "Message Content"
+    },
+    "category": {
+      "type": "string",
+      "title": "Category",
+      "enum": [
+        "Rescheduling",
+        "On My Way",
+        "Weather Delay",
+        "Price Explanation",
+        "Introductions",
+        "Follow-Ups",
+        "Gate Code Requests",
+        "Completion Notices",
+        "Late Notices",
+        "Quote Messages",
+        "Day Switch Notices"
+      ],
+      "default": "Follow-Ups"
+    }
+  },
+  "required": [
+    "title",
+    "content",
+    "category"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

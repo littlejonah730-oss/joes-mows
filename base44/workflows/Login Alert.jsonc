@@ -1,0 +1,42 @@
+{
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "login_alert",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "notify_login": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "notifyOwnerOfLogin",
+            "args": {
+              "user_id": "${ .trigger.user_id }",
+              "email": "${ .trigger.email }",
+              "auth_method": "${ .trigger.auth_method }",
+              "event_type": "${ .trigger.event_type }"
+            }
+          },
+          "then": "end",
+          "x-base44": {
+            "title": "Notify owner of sign-in"
+          }
+        }
+      }
+    ]
+  },
+  "description": "Notifies the owner whenever a non-admin user signs into the app or website",
+  "name": "Login Alert",
+  "trigger": {
+    "config": {
+      "trigger_type": "app_user_auth",
+      "events": [
+        "login",
+        "signup"
+      ]
+    },
+    "condition": "${ .trigger.role != \"admin\" }"
+  }
+}

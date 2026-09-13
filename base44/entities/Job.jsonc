@@ -1,0 +1,159 @@
+{
+  "name": "Job",
+  "type": "object",
+  "properties": {
+    "customer_id": {
+      "type": "string",
+      "title": "Customer ID"
+    },
+    "customer_name": {
+      "type": "string",
+      "title": "Customer Name"
+    },
+    "customer_address": {
+      "type": "string",
+      "title": "Customer Address"
+    },
+    "scheduled_date": {
+      "type": "string",
+      "format": "date",
+      "title": "Scheduled Date"
+    },
+    "status": {
+      "type": "string",
+      "title": "Status",
+      "enum": [
+        "scheduled",
+        "in_progress",
+        "completed",
+        "cancelled",
+        "paused"
+      ],
+      "default": "scheduled"
+    },
+    "service_line": {
+      "type": "string",
+      "title": "Service Line",
+      "enum": [
+        "mowing",
+        "lights",
+        "leaves"
+      ],
+      "default": "mowing"
+    },
+    "price": {
+      "type": "number",
+      "title": "Price",
+      "default": 0
+    },
+    "job_type": {
+      "type": "string",
+      "title": "Job Type",
+      "default": "Mow"
+    },
+    "notes": {
+      "type": "string",
+      "title": "Notes"
+    },
+    "recurring_rule": {
+      "type": "string",
+      "title": "Recurring Rule",
+      "enum": [
+        "weekly",
+        "biweekly",
+        "monthly",
+        "by_request",
+        "one_time"
+      ],
+      "default": "one_time"
+    },
+    "pause_reason": {
+      "type": "string",
+      "title": "Pause/Cancel Reason"
+    },
+    "is_recurring": {
+      "type": "boolean",
+      "title": "Is Recurring",
+      "default": false
+    },
+    "completed_date": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Completed Date"
+    },
+    "highlighted": {
+      "type": "boolean",
+      "title": "Highlighted for Employees",
+      "default": false
+    },
+    "employee_assignment": {
+      "type": "string",
+      "title": "Employee Assignment",
+      "enum": [
+        "solo",
+        "helping",
+        "urgent"
+      ],
+      "default": "helping"
+    },
+    "claimed_by_employee_id": {
+      "type": "string",
+      "title": "Claimed By Employee ID"
+    },
+    "claimed_by_name": {
+      "type": "string",
+      "title": "Claimed By Name"
+    },
+    "claimed_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Claimed At"
+    },
+    "started_by_name": {
+      "type": "string",
+      "title": "Started By Name (who pressed Start)"
+    },
+    "exclusive_to_employee_id": {
+      "type": "string",
+      "title": "Exclusive To Employee ID"
+    },
+    "exclusive_to_employee_name": {
+      "type": "string",
+      "title": "Exclusive To Employee Name"
+    },
+    "needs_help": {
+      "type": "boolean",
+      "title": "Needs Help",
+      "default": false
+    },
+    "timer_started_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Timer Started At"
+    },
+    "timer_duration_seconds": {
+      "type": "number",
+      "title": "Timer Duration (seconds)",
+      "default": 0
+    },
+    "difficulty": {
+      "type": "number",
+      "title": "Difficulty (1-5)",
+      "default": 3
+    },
+    "custom_employee_pay": {
+      "type": "number",
+      "title": "Custom Employee Pay (override)"
+    },
+    "auto_generated": {
+      "type": "boolean",
+      "title": "Auto-Generated",
+      "default": false
+    }
+  },
+  "required": [
+    "customer_id",
+    "customer_name",
+    "scheduled_date"
+  ]
+}

@@ -1,103 +1,103 @@
-# Joe's Mows LLC System
+# LawnFlow
 
-A full-stack field-management app for a lawn care business: clients, jobs, payments, and notes — with automatic pay calculations and a growth tracker.
+Field-management app for Joe's Mows: customers, jobs, invoices, expenses,
+equipment, employee tracking/portal, and more.
 
-- **Backend:** Node.js + Express + SQLite (`better-sqlite3`)
-- **Frontend:** React + Vite, React Router
-- **Brand:** black + neon green, mow-stripe background
+Originally built on Base44; this app now runs on **Supabase** (Postgres +
+Auth + Storage + Realtime) instead of the Base44 platform. The Base44 entity
+definitions this schema was generated from are kept for reference in
+`base44/entities/*.jsonc`; the original data export lives in
+`lawnflow-data-export/`.
 
----
+## 1. Set up Supabase
 
-## 1. Project structure
+1. Create a project at [supabase.com](https://supabase.com) (or use an existing one).
+2. In the SQL Editor, run `supabase/migrations/0001_init.sql`. This creates every
+   table, row-level-security policy, the `profiles`/auth trigger, realtime
+   publication, and the `uploads` storage bucket.
+3. Copy `.env.example` to `.env` and fill in your project's values (Project
+   Settings → API):
+   ```
+   VITE_SUPABASE_URL=https://xxxx.supabase.co
+   VITE_SUPABASE_ANON_KEY=<anon/public key>
+   ```
 
-```
-joes-mows-system/
-├── server/              # Express API + SQLite database
-│   ├── db.js            # Schema + default settings
-│   ├── server.js        # All routes
-│   ├── db/               # SQLite file lives here (auto-created)
-│   └── package.json
-└── client/              # React (Vite) frontend
-    ├── src/
-    │   ├── pages/        # Dashboard, Clients, Jobs, Notes
-    │   ├── api.js         # fetch wrapper
-    │   ├── App.jsx
-    │   └── index.css      # brand styling
-    ├── vite.config.js     # proxies /api to the backend on :4000
-    └── package.json
-```
+### Auth configuration
 
-## 2. Requirements
+- **Email/password + Google** are both used by the Login/Register pages.
+  Enable the Google provider under Authentication → Providers if you want
+  "Continue with Google" to work.
+- Registration expects a 6-digit **email OTP code**, not a magic link: under
+  Authentication → Email Templates, set the "Confirm signup" template to
+  include `{{ .Token }}` rather than the default confirmation link.
+- The **first account to ever sign up becomes admin** automatically (see
+  `handle_new_user()` in the migration); everyone after gets the regular
+  `user` role. Promote/demote later via the `profiles` table.
 
-- Node.js 18+ and npm
+## 2. Import the existing business data
 
-## 3. Install & run — backend
+The original Base44 data export is in `lawnflow-data-export/*.json`. To load
+it into your new Supabase tables:
 
 ```bash
-cd server
 npm install
-npm start
+SUPABASE_URL=https://xxxx.supabase.co \
+SUPABASE_SERVICE_ROLE_KEY=<service role key, Project Settings → API> \
+npm run import-data
 ```
 
-The API runs at **http://localhost:4000**. On first run it creates `server/db/joesmows.db` automatically with all tables and sensible defaults (worker rate = $12/job, hire milestone = 25 recurring clients).
+This uses the **service role key** (not the anon key) to bypass RLS for a
+one-time bulk load — never put that key in `.env`/the frontend. It preserves
+the original record ids, so cross-references between customers/jobs/invoices/
+etc. stay intact.
 
-## 4. Install & run — frontend
+**Not imported automatically:** Base44 "User" accounts (`User.json`). Each
+admin/employee needs to sign up for real through the new Login/Register
+pages to get a Supabase auth account; there's no way to recreate a login
+without a password. The `Employee` roster itself (name, phone, PIN, pay
+stats, etc.) *is* imported — it just isn't linked to a login until that
+person signs up and the app matches them by `user_id`.
 
-Open a second terminal:
+## 3. Run the app
 
 ```bash
-cd client
 npm install
 npm run dev
 ```
 
-The app runs at **http://localhost:5173** and proxies all `/api/*` requests to the backend on port 4000, so just start both and open the Vite URL in your browser.
+## Known gaps from the Base44 → Supabase migration
 
-## 5. Using the app
+- **Backend automations** (`base44/functions/*`, `base44/workflows/*`) — daily
+  digest emails, recurring job generation, push notifications, the Google
+  Sheets expense export, waitlist auto-fill, etc. — were Base44 serverless
+  functions and are not yet ported to Supabase Edge Functions. The frontend
+  code that calls them (`base44.functions.invoke(...)`) still runs, but those
+  specific features will error/no-op until equivalent Edge Functions are
+  written under `supabase/functions/`.
+- **`base44.users.inviteUser`** (Settings → invite a teammate) needs a
+  Supabase Edge Function using the service role (`supabase.auth.admin.inviteUserByEmail`)
+  — not included yet.
+- **OAuthConsent page** (`src/pages/OAuthConsent.jsx`) implemented Base44's
+  MCP-client OAuth consent screen; it has no Supabase equivalent and is
+  effectively inert now (it isn't linked from the app's routes).
 
-1. **Clients** — add your roster first (name, group, address, frequency, day, bagged clippings, phone, average time, price). This is your "lookup table."
-2. **Jobs** — add a job, pick a client, and the charge auto-fills from that client's roster price (edit it if a job is a one-off price). Toggle **Paid** and pick a payment method (Cash / Venmo / Check) once you're paid — only paid jobs count toward totals.
-3. **Dashboard** — shows Total Revenue, Worker Pay, My Pay, and the payment-method breakdown, all recalculated live from paid jobs. It also shows your growth tracker toward the "time to hire" milestone.
-4. **Notes** — a simple running task list (buy weedkiller, call Dorothy, teach Enrique, etc.) with add/complete/delete.
+## Project structure
 
-## 6. Adjusting pay rate & hire milestone
-
-These are stored in the `settings` table and exposed via the API — update them with:
-
-```bash
-curl -X PUT http://localhost:4000/api/settings \
-  -H "Content-Type: application/json" \
-  -d '{"worker_rate": "15", "hire_milestone": "30"}'
 ```
-
-(A settings screen isn't built into the UI yet — this is the fastest way to change them. Ask if you'd like a Settings page added.)
-
-## 7. API reference
-
-| Method | Route | Description |
-|---|---|---|
-| GET/POST | `/api/clients` | List / create clients (supports `?search=`) |
-| PUT/DELETE | `/api/clients/:id` | Update / delete a client |
-| GET/POST | `/api/jobs` | List / create jobs (supports `?from&to&client_id&paid`) |
-| PUT/DELETE | `/api/jobs/:id` | Update / delete a job |
-| GET/POST | `/api/notes` | List / create notes |
-| PUT/DELETE | `/api/notes/:id` | Update (toggle complete) / delete a note |
-| GET | `/api/pay-summary` | Revenue, worker pay, my pay, payment breakdown (paid jobs only) |
-| GET | `/api/growth` | Client counts by frequency + hire-milestone progress |
-| GET/PUT | `/api/settings` | Read / update worker rate & hire milestone |
-
-## 8. Notes on the pay math
-
-- **Total Revenue** = sum of `charge` for jobs where `paid = 1`.
-- **Worker Pay** = (# of paid jobs) × `worker_rate` (flat rate per job, adjustable in settings).
-- **My Pay** = Total Revenue − Worker Pay.
-- Unpaid jobs are shown separately as "Outstanding" and never affect the running totals — exactly like the spec requires.
-
-## 9. Production build (optional)
-
-```bash
-cd client
-npm run build
+src/
+├── api/
+│   ├── supabaseClient.js     # (see src/lib/supabaseClient.js)
+│   ├── entitiesClient.js     # generic CRUD + realtime over Supabase tables
+│   ├── authClient.js         # Supabase Auth, shaped like the old Base44 auth API
+│   └── base44Client.js       # composes the above so existing call sites (`base44.*`) didn't need to change
+├── lib/
+│   ├── supabaseClient.js     # the actual @supabase/supabase-js client
+│   └── AuthContext.jsx       # React auth context, now backed by Supabase sessions
+└── pages/, components/, hooks/  # unchanged app UI
+supabase/
+└── migrations/0001_init.sql  # full schema + RLS + triggers + storage bucket
+scripts/
+└── import-to-supabase.mjs    # one-time data import from lawnflow-data-export/
+lawnflow-data-export/         # original Base44 data export (JSON)
+legacy-express-app/           # the previous, unrelated Node/Express + SQLite app this repo used to contain
 ```
-
-This outputs static files to `client/dist/` which you can serve with any static host, or point Express at it (add `express.static` for `client/dist` in `server.js`) to serve everything from one server.

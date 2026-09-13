@@ -1,0 +1,88 @@
+{
+  "name": "Expense",
+  "type": "object",
+  "properties": {
+    "amount": {
+      "type": "number",
+      "title": "Amount",
+      "default": 0
+    },
+    "category": {
+      "type": "string",
+      "title": "Category",
+      "enum": [
+        "fuel",
+        "equipment",
+        "supplies",
+        "labor",
+        "other"
+      ],
+      "default": "other"
+    },
+    "description": {
+      "type": "string",
+      "title": "Description"
+    },
+    "vendor": {
+      "type": "string",
+      "title": "Vendor"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "title": "Date"
+    },
+    "payment_method": {
+      "type": "string",
+      "title": "Payment Method",
+      "enum": [
+        "cash",
+        "check",
+        "card",
+        "other"
+      ],
+      "default": "other"
+    },
+    "paid": {
+      "type": "boolean",
+      "title": "Paid",
+      "default": true
+    }
+  },
+  "required": [
+    "amount",
+    "category",
+    "date"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "user"
+          }
+        }
+      ]
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "daily_business_automation",
+      "version": "1.2",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "generate_recurring": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "generateRecurringJobs"
+          },
+          "then": "daily_digest",
+          "x-base44": {
+            "title": "Generate recurring jobs"
+          }
+        }
+      },
+      {
+        "daily_digest": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "dailyDigest"
+          },
+          "then": "morning_schedule",
+          "x-base44": {
+            "title": "Overdue payment alerts"
+          }
+        }
+      },
+      {
+        "morning_schedule": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "sendDailySchedule",
+            "args": {
+              "mode": "today"
+            }
+          },
+          "then": "end",
+          "x-base44": {
+            "title": "Today's jobs + pay alerts"
+          }
+        }
+      }
+    ]
+  },
+  "description": "Every morning at 6am Central: auto-schedules recurring jobs (Mar\u2013Oct season), posts overdue-payment alerts, then sends the owner today's jobs with pay (employees get only their own jobs, no pay)",
+  "name": "Daily Business Automation",
+  "trigger": {
+    "condition": null,
+    "config": {
+      "trigger_type": "scheduled",
+      "events": [],
+      "schedule_mode": "recurring",
+      "cron_expression": "0 6 * * *",
+      "one_time_date": null,
+      "timezone": "America/Chicago",
+      "interval_value": null,
+      "interval_unit": null,
+      "interval_anchor": null,
+      "ends_type": "never",
+      "ends_on_date": null,
+      "ends_after_count": null
+    }
+  }
+}

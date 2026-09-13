@@ -1,0 +1,37 @@
+{
+  "name": "Recurring Job Generator",
+  "description": "As soon as a weekly/biweekly/monthly job is created or updated, automatically extends the series on the calendar ~8 weeks ahead",
+  "trigger": {
+    "config": {
+      "trigger_type": "entity",
+      "entity_name": "Job",
+      "events": [
+        "create",
+        "update"
+      ]
+    },
+    "condition": "${ (.trigger.data.recurring_rule == \"weekly\" or .trigger.data.recurring_rule == \"biweekly\" or .trigger.data.recurring_rule == \"monthly\") and .trigger.data.auto_generated != true and .trigger.data.status != \"cancelled\" and .trigger.data.status != \"paused\" }"
+  },
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "recurring_job_generator",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "extend_recurring": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "generateRecurringJobs"
+          },
+          "then": "end",
+          "x-base44": {
+            "title": "Extend recurring jobs"
+          }
+        }
+      }
+    ]
+  }
+}
