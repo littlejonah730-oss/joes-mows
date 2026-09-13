@@ -31,19 +31,6 @@ begin
 end;
 $$;
 
-create or replace function public.is_admin()
-returns boolean
-language sql
-stable
-security definer
-set search_path = public
-as $$
-  select exists (
-    select 1 from public.profiles p
-    where p.id = auth.uid() and p.role = 'admin'
-  );
-$$;
-
 -- ---------------------------------------------------------------------
 -- profiles (Base44 "User" entity — role only; identity lives in auth.users)
 -- ---------------------------------------------------------------------
@@ -62,6 +49,22 @@ create trigger trg_profiles_updated
   for each row execute function public.set_updated_date();
 
 alter table public.profiles enable row level security;
+
+-- is_admin() is LANGUAGE sql, so Postgres parse-analyzes its body (and thus
+-- resolves `public.profiles`) at CREATE FUNCTION time — it must come after
+-- the table above, not up with the other helpers.
+create or replace function public.is_admin()
+returns boolean
+language sql
+stable
+security definer
+set search_path = public
+as $$
+  select exists (
+    select 1 from public.profiles p
+    where p.id = auth.uid() and p.role = 'admin'
+  );
+$$;
 
 create policy "profiles_select_own_or_admin" on public.profiles
   for select using (id = auth.uid() or public.is_admin());
